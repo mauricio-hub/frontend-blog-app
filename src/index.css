@@ -1,131 +1,3 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body{
-
-    font-family: 'Inter', sans-serif;
-    
-}
-
-
-.dark-bg {
-  background-color: #090D1F;
-}
-
-.light-bg {
-  background-color: #FFFFFF; 
-}
-.header{
-    padding: 20px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-     margin-bottom: 60px; 
-    
-}
-
-
-li{
-    list-style: none; 
-}
-a{
-    text-decoration: none; 
-    color: #000; 
-    font-size: 20px;
-
-}
-.menu{
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    flex-direction: row;
-    gap: 20px;
-}
-
-.header p {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #adacac;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #75749e;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #ffffff;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-
-
-.content-title{
-  padding: 140px;
-  text-align: center;
-
-}
-
-.title{
-   
-    font-size: 243px;
-    font-weight: bold;
-    margin-bottom: 20px;
-} */
-
 /* light.css */
 @tailwind base;
 @tailwind components;
@@ -138,7 +10,24 @@ body {
 h1{
     font-size: 230px;
     font-weight: bold;
+    color: #000;
 }
+
+ h2 {
+  color: #000000;
+ }
+
+ h3 {
+  color: #000000; 
+}
+
+ a {
+  color: #000000; 
+}
+p {
+  color: #000000; 
+}
+
 
 /* Color personalizado para el tema claro */
 .light-bg {
@@ -147,11 +36,13 @@ h1{
 }
 
 .header {
-    padding: 30px;
+    
+    padding-top: 30px;
     display: flex; 
-    justify-content: space-between; 
+    justify-content:space-between; 
     align-items: center; 
     margin-bottom: 60px; 
+   
 }
 
 li {
@@ -249,5 +140,190 @@ input:checked + .slider:before {
     font-size: 243px;
     font-weight: bold;
     margin-bottom: 20px;
+   
+    
     
 }
+
+
+
+/* estilo de los cards */
+.row{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+ 
+}
+
+.bigCard {
+    /* background-color: #2d326b;    */
+    width: 600px;
+    height: 440px;
+    /* color: #fff; */
+}
+
+.littleCard{
+   /*  padding-top: 20px; */
+   
+    color: #fff;
+  /*   padding: 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+   
+   /*  margin-bottom: 20px; */
+    width: 600px;
+    height: 210px;
+}
+
+
+
+.bigBigCard {
+    margin-top: 20px;
+    background-color: #2d326b;
+    color: #fff;
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+   /*  margin-bottom: 20px; */
+    width: 1216px;
+    height: 240px;
+}
+
+.rigth-col{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+/*************** estilos card  *******************************/
+/* BigCardPost */
+.contentbigCard{
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+
+}
+.datePost{
+    font-size: 14px;
+    font-weight:700,;
+    color: #6941C6
+}
+.cardImage{
+    width: 100%;
+    height: 250px;
+}
+
+.postDescription{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.titlePost{
+    font-size: 24px;
+    font-weight: bold;
+   
+}
+
+.tags{
+    display: flex;
+    
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 10px;
+
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #F9F5FF; /* Cambia el color de fondo según tus preferencias */
+  color: #6941C6; /* Cambia el color del texto según tus preferencias */
+  border-radius: 50px; /* Establece un radio suficientemente grande para que parezca un óvalo */
+}
+
+
+/* Media Query para pantallas más pequeñas (por ejemplo, iPad y teléfonos) */
+@media (max-width: 1200px) {
+  .row {
+    flex-direction: column; /* Cambia a una columna */
+    gap: 20px;
+  }
+
+  
+  .bigCard {
+    width: 100%;
+    height: 400px;
+   
+  }
+.littleCard {
+  width: 100%;
+  height: 200px;
+ 
+}
+.bigBigCard {
+  width: 100%;
+  height: 400px;
+ 
+}
+
+}
+
+
+/* Media Query para pantallas más pequeñas (por ejemplo, iPad y teléfonos) */
+/* @media (max-width: 700px) {
+  .row {
+    flex-direction: column; 
+    gap: 20px;
+  }
+
+  
+  .bigCard {
+    width: 100%;
+    height: 200px;
+   
+  }
+.littleCard {
+ 
+  width: 100%;
+  height: 200px;
+ 
+}
+.bigBigCard {
+  width: 100%;
+  height: 200px;
+ 
+}
+
+} */
+
+ /* card */
+
+ .contentCard{
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+    height: 100%;
+    gap: 20px;
+ }
+ .imageCardRigth{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ }
+ .titleCardRigth{
+      font-size: 18px;
+      font-weight: bold;
+ }
+
+.contentTags{
+  margin-top: 20px;
+}
+

@@ -1,5 +1,5 @@
 import React from "react";
-import CustomText from "../CustomText";
+
 
 export const Hero = () => {
   return (
@@ -14,3 +14,5 @@ export const Hero = () => {
     </>
   );
 };
+
+
