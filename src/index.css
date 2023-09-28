@@ -181,7 +181,6 @@ input:checked + .slider:before {
 
 .bigBigCard {
     margin-top: 20px;
-    background-color: #2d326b;
     color: #fff;
    
     display: flex;
@@ -211,7 +210,7 @@ input:checked + .slider:before {
 }
 .datePost{
     font-size: 14px;
-    font-weight:700,;
+    font-weight:bold;
     color: #6941C6
 }
 .cardImage{
@@ -251,6 +250,10 @@ input:checked + .slider:before {
 
 /* Media Query para pantallas más pequeñas (por ejemplo, iPad y teléfonos) */
 @media (max-width: 1200px) {
+  h1{
+    font-size: 100px;
+  }
+
   .row {
     flex-direction: column; /* Cambia a una columna */
     gap: 20px;
@@ -272,6 +275,10 @@ input:checked + .slider:before {
   height: 400px;
  
 }
+
+
+
+
 
 }
 
@@ -327,3 +334,33 @@ input:checked + .slider:before {
   margin-top: 20px;
 }
 
+/* VeryBigCard */
+.contentVeryBigCard{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.bigImg{
+  width: 65%; /* Cambiamos el ancho al 50% */
+  height: auto; /* Mantenemos la relación de aspecto original */
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .contentVeryBigCard{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+  }
+  .bigImg{
+    width: 100%; /* Cambiamos el ancho al 50% */
+    height: auto; /* Mantenemos la relación de aspecto original */
+    overflow: hidden;
+  }
+  
+}
