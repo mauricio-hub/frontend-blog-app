@@ -1,183 +1,92 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { usePostData } from "../../context/PostProvider";
+import { formatDate } from "../../util";
 
 export const SliderPost = () => {
-  // Datos de ejemplo para las publicaciones
-  const posts = [
-    {
-      id: 1,
-      title: " 1",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=801",
-    },
-    {
-      id: 2,
-      title: " 2",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 3,
-      title: " 3",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 4,
-      title: " 4",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 5,
-      title: "5",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 6,
-      title: "Publicación 6",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 7,
-      title: " 7",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 8,
-      title: "8",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 9,
-      title: "9",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 10,
-      title: "10",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-
-
-    {
-      id: 11,
-      title: "11",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 12,
-      title: "12",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 13,
-      title: "13",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 14,
-      title: "14",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 15,
-      title: "15",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 16,
-      title: " 16",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 17,
-      title: " 17",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 18,
-      title: "18",
-      image:
-        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-  ];
-
-
-  const itemsPerPage = 6; // Número de elementos por página
+  const { allPost, loading, error } = usePostData();
+  const [currentPosts, setCurrentPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
 
-  // Calcular el índice de inicio y final de la página actual
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  useEffect(() => {
+    if (!loading && !error) {
+      // Ordenar los post por fecha
+      const sortedPosts = allPost.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      // Calcula el índice inicial y final de los artículos a mostrar en la página actual
+      const indexOfLastPost = currentPage * postsPerPage;
+      const indexOfFirstPost = indexOfLastPost - postsPerPage;
+      const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+      // Actualiza el estado con los artículos actuales
+      setCurrentPost(currentPosts);
+    }
+  }, [allPost, loading, error, currentPage]);
 
-  // Obtener las publicaciones de la página actual
-  const currentPosts = posts.slice(startIndex, endIndex);
-
-  // Función para cambiar de página
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const truncateText = (text, limit) => {
+    const words = text.split(" ");
+    if (words.length > limit) {
+      return words.slice(0, limit).join(" ") + " ...";
+    }
+    return text;
   };
 
+  // Función para cambiar de página
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(allPost.length / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-     <div style={{ marginTop: "80px" }}>
+    <div style={{ marginTop: "80px" }}>
       <h2>All blog posts</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" style={{ marginTop: "20px" }}>
-        {currentPosts.map((post) => (
-          <div>
-          <img
-            src={post.image}
-            alt={post.title}
-            className="mx-auto object-cover"
-          />
-          <p>20-11-2023</p>
-          <h2 className="text-lg mt-2">{post.title}</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Corporis iure facilis, odit adipisci vel molestiae? Possimus
-            molestias excepturi veritatis voluptatibus!
-          </p>
-          <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-            Red
-          </span>
-          <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-            Green
-          </span>
-        </div>
+        {currentPosts.map((post, index) => (
+          <div key={index} className="post-item">
+            <img
+              src={post.miniature}
+              alt={post.title}
+              className="mx-auto object-cover w-full h-48" // Establece un alto fijo aquí
+            />
+            <p>{formatDate(post.created_at)}</p>
+            <h2 className="text-lg mt-2">{post.title}</h2>
+            <p>{truncateText(post.content, 20)}</p>
+            <span className="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+              Red
+            </span>
+            <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+              Green
+            </span>
+          </div>
         ))}
       </div>
 
-      {/* Paginación */}
-      <div className="flex justify-center mt-4">
-        {[...Array(Math.ceil(posts.length / itemsPerPage)).keys()].map((page) => (
-          <button
-            key={page}
-            style={{
-              background: page + 1 === currentPage ? "#F9F5FF" : "#dadada",
-              color: page + 1 === currentPage ? "#6a36be" : "#000000",
-              padding: "0.5rem 1rem",
-              margin: "0.25rem",
-              borderRadius: "0.25rem",
-            }}
-            onClick={() => handlePageChange(page + 1)}
+      <ul className="pagination mt-4 flex justify-center space-x-4">
+        {pageNumbers.map((number) => (
+          <li
+            key={number}
+            className={`page-item ${number === currentPage ? 'bg-purple-100' : ''}`}
+            style={{ width: "40px", height: "40px", textAlign: "center", lineHeight: "40px",
+            borderRadius: "10%"
+          }}
           >
-            {page + 1}
-          </button>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                paginate(number);
+              }}
+              href="#"
+              className={`page-link ${number === currentPage ? "active text-black text-center" : "text-center"}`}
+              style={{ width: "40px", height: "40px", lineHeight: "40px" }}
+            >
+              <p>{number}</p>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
